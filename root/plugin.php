@@ -33,46 +33,19 @@
  * Built using grunt-wp-plugin
  * Copyright (c) 2013 10up, LLC
  * https://github.com/10up/grunt-wp-plugin
+ * template modified by theAverageDev (Luca Tumedei) to use classes and
+ * autoloading
  */
 
 // Useful global constants
-define( '{%= prefix_caps %}_VERSION', '0.1.0' );
-define( '{%= prefix_caps %}_URL',     plugin_dir_url( __FILE__ ) );
-define( '{%= prefix_caps %}_PATH',    dirname( __FILE__ ) . '/' );
+define('{%= prefix_caps %}_VERSION', '0.1.0');
+define('{%= prefix_caps %}_URL', plugin_dir_url( __FILE__ ));
+define('{%= prefix_caps %}_PATH', dirname( __FILE__ ) . '/');
 
-/**
- * Default initialization for the plugin:
- * - Registers the default textdomain.
- */
-function {%= prefix %}_init() {
-	$locale = apply_filters( 'plugin_locale', get_locale(), '{%= prefix %}' );
-	load_textdomain( '{%= prefix %}', WP_LANG_DIR . '/{%= prefix %}/{%= prefix %}-' . $locale . '.mo' );
-	load_plugin_textdomain( '{%= prefix %}', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
-}
-
-/**
- * Activate the plugin
- */
-function {%= prefix %}_activate() {
-	// First load the init scripts in case any rewrite functionality is being loaded
-	{%= prefix %}_init();
-
-	flush_rewrite_rules();
-}
-register_activation_hook( __FILE__, '{%= prefix %}_activate' );
-
-/**
- * Deactivate the plugin
- * Uninstall routines should be in uninstall.php
- */
-function {%= prefix %}_deactivate() {
-
-}
-register_deactivation_hook( __FILE__, '{%= prefix %}_deactivate' );
-
-// Wireup actions
-add_action( 'init', '{%= prefix %}_init' );
-
-// Wireup filters
-
-// Wireup shortcodes
+// Include the autolaoder class
+require_once(dirname(__FILE__) . '/includes/jwage/SplClassLoader.php');
+// Register the plugin namespace with the class loader 
+$classLoader = new jwage\SplClassLoader('{%= prefix %}', dirname(__FILE__). '/includes');
+$classLoader->register();
+// Bootstrap the plugin main class
+new \{%= prefix %}\Main();
