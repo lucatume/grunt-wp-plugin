@@ -45,7 +45,7 @@ define('{%= prefix_caps %}_PATH', dirname( __FILE__ ) . '/');
 // Include the autolaoder class if the class is not 
 // still defined
 if (!class_exists('\jwage\SplClassLoader')) {
-    require_once(dirname(__FILE__) . '/vendor/jwage/SplClassLoader.php');
+    require_once(dirname(__FILE__) . '/includes/jwage/SplClassLoader.php');
 }
 // Register the plugin namespace with the class loader 
 $classLoader = new jwage\SplClassLoader('{%= prefix %}', dirname(__FILE__). '/includes');
