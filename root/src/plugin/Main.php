@@ -1,5 +1,5 @@
 <?php
-namespace {%= prefix %};
+namespace {%= namespace %}\{%= prefix %};
 
 /**
  * Plugin Name: {%= title %}
