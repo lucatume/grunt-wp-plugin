@@ -24,7 +24,7 @@ exports.template = function(grunt, init, done) {
             default: 'wpplugin'
         },
         {
-            name: 'namespace',
+            name: 'nspace',
             message: 'PHP namespace (alpha and underscore characters only)',
             default: 'wpplugin'
         },
@@ -65,6 +65,7 @@ exports.template = function(grunt, init, done) {
         // An additional value that won't conflict with NodeUnit unit tests.
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
+        props.js_safe_name_capitalized = props.js_safe_name.charAt(0).toUpperCase() + props.js_safe_name.slice(1);
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {
@@ -93,7 +94,7 @@ exports.template = function(grunt, init, done) {
         // hint from PeteAUK at:
         // http://stackoverflow.com/questions/11852283/rename-templates-folders-with-a-gruntjs-custom-init-task
         var files = init.filesToCopy(props),
-            folder_name = 'src/' + props.namespace + '/' + props.prefix;
+            folder_name = 'src/' + props.nspace + '/' + props.prefix;
         for (var file in files) {
             if (file.indexOf('src/plugin/') > -1) {
                 var path = files[file],

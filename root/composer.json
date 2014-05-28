@@ -1,4 +1,7 @@
 {
+    "require": {
+        "lucatume/tdd-helpers": "dev-master"
+    },
     "autoload": {
         "psr-0": {
             "{%= namespace %}\\": "src/"
