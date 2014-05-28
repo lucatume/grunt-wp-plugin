@@ -46,4 +46,4 @@ define('{%= prefix_caps %}_PATH', dirname( __FILE__ ) . '/');
 include 'vendor/autoload.php';
 
 // Bootstrap the plugin main class
-new \{%= prefix %}\Main();
+new \{%= namespace %}\{%= prefix %}\Main();
