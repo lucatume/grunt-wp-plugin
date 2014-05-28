@@ -65,7 +65,7 @@ exports.template = function(grunt, init, done) {
         // An additional value that won't conflict with NodeUnit unit tests.
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
-        props.js_safe_name_capitalized = props.js_safe_name.charAt(0).toUpperCase() + props.js_safe_name.slice(1);
+        props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } ).replace(/\s+/, '');
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {
