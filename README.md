@@ -37,6 +37,12 @@ Install the NPM modules required to actually process your newly-created project 
 npm install
 ```
 
+Initialize Composer
+
+```
+composer update
+```
+
 ## Scaffold
 
 After running the init command above, you will be presented with a standard directory structure similar to:
@@ -55,6 +61,7 @@ After running the init command above, you will be presented with a standard dire
     .. /languages
     .. .. plugin.pot
     .. .gitignore
+    .. composer.json
     .. Gruntfile.js
     .. plugin.php
     .. readme.php
@@ -67,6 +74,9 @@ If you're using Sass or Less, the raw files will be processed into `/css/filenam
 
 If you're using vanilla CSS, the source files will be minified into `/css/filename.min.css`.
 
+### Composer
+The template will add a [Composer](https://getcomposer.org/) configuration file, <code>composer.json</code>, to the plugin with a requirement for [the tdd-helper package](https://github.com/lucatume/tdd-helpers) and some information about the package.  
+
 ### JavaScript
 
 You should only ever be modifying script files in the `/js/src` directory.  Grunt will automatically concatenate and minify your scripts into `/js/filename.js` and `/js/filename.min.js`.  These generated files should never be modified directly.
@@ -74,14 +84,3 @@ You should only ever be modifying script files in the `/js/src` directory.  Grun
 ### Images
 
 The `/images/src` directory exists only to allow you to keep track of source files (like PSDs or separate images that have been merged into sprites).  This helps keep source files under version control, and allows you to bundle them with the distribution of your new GPL plugin.
-
-## Release History
-
- * 2013-08-15   v0.1.7   Fix a typo in rename.json.
- * 2013-08-13   v0.1.6   Add deployment builder. Remove dates from Grunt headers.
- * 2013-07-18	v0.1.5	 Remove /extend references (props @trepmal).
- * 2013-05-30   v0.1.4   Fix broken package.json generator.
- * 2013-05-06   v0.1.3   Several I18N updates (props @bradyvercher)
- * 2013-04-29   v0.1.2   Folder restructuring and renaming.
- * 2013-04-26   v0.1.1   Minor bug fixes.
- * 2013-04-25   v0.1.0   Initial public release.
