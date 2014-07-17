@@ -1,6 +1,14 @@
 {
+    "name": "{%= package_name %}",
+    "description": "{%= description %}",
+    "authors": [
+        {
+            "name": "{%= author_name %}",
+            "email": "{%= author_email %}"
+        }
+    ],
     "require": {
-        "lucatume/tdd-helpers": "dev-master"
+        "lucatume/tdd-helpers": "~1.1"
     },
     "autoload": {
         "psr-0": {
