@@ -112,6 +112,8 @@ class {%= js_safe_name_capitalized %}
 
     /*
      * Default initialization for the plugin:
+     * - Initializes the plugin vars
+     * - Hooks into actions and filters
      * - Registers the default textdomain.
      */
     public static function init()
