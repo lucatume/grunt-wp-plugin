@@ -35,7 +35,7 @@
  * https://github.com/10up/grunt-wp-plugin
  */
 
-namespace {%= nspace %}\{%= prefix %};
+namespace {%= nspace %};
 
 // Composer autoload
 include 'vendor/autoload.php';
@@ -144,4 +144,4 @@ class {%= js_safe_name_capitalized %}
 }
 
 // Bootstrap the plugin main class
-\{%= nspace %}\{%= prefix %}\{%= js_safe_name_capitalized %}::init();
+\{%= nspace %}\{%= js_safe_name_capitalized %}::init();
