@@ -46,8 +46,8 @@ use \tad\adapters\Functions;
 /**
  * Activation and deactivation
 */
-register_activation_hook(__FILE__, array('\{%= nspace %}\{%= prefix %}\{%= js_safe_name_capitalized %}', 'activate'));
-register_deactivation_hook(__FILE__, array('\{%= nspace %}\{%= prefix %}\{%= js_safe_name_capitalized %}', 'deactivate'));
+register_activation_hook(__FILE__, array('\{%= nspace %}\{%= js_safe_name_capitalized %}', 'activate'));
+register_deactivation_hook(__FILE__, array('\{%= nspace %}\{%= js_safe_name_capitalized %}', 'deactivate'));
 
 class {%= js_safe_name_capitalized %}
 {
