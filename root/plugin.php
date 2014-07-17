@@ -51,12 +51,12 @@ register_deactivation_hook(__FILE__, array('\{%= nspace %}\{%= js_safe_name_capi
 
 class {%= js_safe_name_capitalized %}
 {
-    private $version = null;
-    private $path = null;
-    private $uri = null;
-    private $prefix = null;
-    private $js_assets = null;
-    private $css_assets = null;
+    public $version = null;
+    public $path = null;
+    public $uri = null;
+    public $prefix = null;
+    public $js_assets = null;
+    public $css_assets = null;
     
     /**
      * An instance of the plugin main class, meant to be singleton.
@@ -80,15 +80,24 @@ class {%= js_safe_name_capitalized %}
         $this->f = $f;
     }
 
+    /**
+     * Do not allow writing access to properties.
+     *
+     * @param string $name
+     * @param mixed $value
+     */
+    public function __set($name, $value){
+        trigger_error(sprintf('Cannot set %s->%s property.', __NAMESPACE__ . '\\'. __CLASS__, $name));
+    }
+
     public static function the($key)
     {
-        if (!is_string($key)) {
-            throw new \BadMethodCallException("Key must be a string", 1);
-        }
-        if (!isset(self::$instance->$key)) {
-            return null;
-        }
-        return self::$instance->$key;
+        return self::$instance;
+    }
+
+    public static function getInstance()
+    {
+        return self::$instance;
     }
 
     private function init_vars()
