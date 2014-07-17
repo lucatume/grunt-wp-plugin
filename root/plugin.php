@@ -119,7 +119,7 @@ class {%= js_safe_name_capitalized %}
         if (self::$instance == null) {
             self::$instance = new self();
         }
-        self::$instance->initVars();
+        self::$instance->init_vars();
         self::$instance->hook();
 
         $locale = apply_filters('plugin_locale', get_locale(), '{%= prefix %}');
