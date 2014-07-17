@@ -36,7 +36,12 @@ exports.template = function(grunt, init, done) {
             name: 'css_type',
             message: 'CSS Preprocessor: Will you use "Sass", "LESS", or "none" for CSS with this project?',
             default: 'Sass'
-        }
+        },
+        {
+            name: 'package_name', 
+            message: 'Composer package name',
+            default: 'name/package'
+        },
     ], function(err, props) {
         props.keywords = [];
         props.version = '0.1.0';
