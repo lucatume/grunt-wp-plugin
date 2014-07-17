@@ -95,7 +95,7 @@ class {%= js_safe_name_capitalized %}
         return self::$instance;
     }
 
-    public static function getInstance()
+    public static function get_instance()
     {
         return self::$instance;
     }
