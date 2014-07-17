@@ -55,8 +55,8 @@ class {%= js_safe_name_capitalized %}
     private $path = null;
     private $uri = null;
     private $prefix = null;
-    private $jsAssets = null;
-    private $cssAssets = null;
+    private $js_assets = null;
+    private $css_assets = null;
     
     /**
      * An instance of the plugin main class, meant to be singleton.
@@ -97,8 +97,8 @@ class {%= js_safe_name_capitalized %}
         $this->path = dirname(__FILE__);
         $this->uri = $this->f->plugin_basename(__FILE__ );
         $this->prefix = "{%= prefix %}";
-        $this->jsAssets = $this->uri . '/assets/js';
-        $this->cssAssets = $this->uri . '/assets/css';
+        $this->js_assets = $this->uri . '/assets/js';
+        $this->css_assets = $this->uri . '/assets/css';
     }
 
     /*
