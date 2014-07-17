@@ -91,7 +91,7 @@ class {%= js_safe_name_capitalized %}
         return self::$instance->$key;
     }
 
-    private function init_Vars()
+    private function init_vars()
     {
         $this->version = '0.1.0';
         $this->path = dirname(__FILE__);
