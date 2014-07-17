@@ -11,7 +11,7 @@
         "lucatume/tdd-helpers": "~1.1"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "{%= js_safe_nspace %}\\": "src/"
         }
     }
