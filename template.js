@@ -66,7 +66,6 @@ exports.template = function(grunt, init, done) {
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
         props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } ).replace(/\s+/, '_');
-        props.js_safe_nspace = props.nspace.replace(/\\/g, '\\\\');
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {
