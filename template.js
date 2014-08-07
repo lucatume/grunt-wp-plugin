@@ -23,11 +23,6 @@ exports.template = function(grunt, init, done) {
             message: 'PHP function prefix (alpha and underscore characters only)',
             default: 'wpplugin'
         },
-        {
-            name: 'nspace',
-            message: 'PHP namespace (alpha and underscore characters only)',
-            default: 'wpplugin'
-        },
         init.prompt('description', 'The best WordPress extension ever made!'),
         init.prompt('homepage', 'http://wordpress.org/plugins'),
         init.prompt('author_name'),
@@ -71,7 +66,6 @@ exports.template = function(grunt, init, done) {
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
         props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } ).replace(/\s+/, '_');
-        props.js_safe_nspace = props.nspace.replace(/\\/g, '\\\\');
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {

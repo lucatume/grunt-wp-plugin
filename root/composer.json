@@ -8,11 +8,21 @@
         }
     ],
     "require": {
-        "lucatume/tdd-helpers": "~1.1"
+        "lucatume/tdd-helpers": "~2.0",
+        "xrstf/composer-php52": "1.*"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "xrstf\\Composer52\\Generator::onPostInstallCmd"
+        ],
+        "post-update-cmd": [
+            "xrstf\\Composer52\\Generator::onPostInstallCmd"
+        ],
+        "post-autoload-dump": [
+            "xrstf\\Composer52\\Generator::onPostInstallCmd"
+        ]
     },
     "autoload": {
-        "psr-4": {
-            "{%= js_safe_nspace %}\\": "src/"
-        }
+        "classmap": ["src/"]
     }
 }
