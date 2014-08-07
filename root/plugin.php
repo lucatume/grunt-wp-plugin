@@ -37,13 +37,10 @@
  * http://theaveragedev.com
  */
 
-namespace {%= nspace %};
-
 // Composer autoload
-include 'vendor/autoload.php';
-
-use \tad\interfaces\FunctionsAdapter;
-use \tad\adapters\Functions;
+// modified to work with PHP 5.2 thanks to 
+// https://bitbucket.org/xrstf/composer-php52
+include 'vendor/autoload_52.php';
 
 /**
  * Activation and deactivation
@@ -157,4 +154,4 @@ class {%= prefix %}_{%= js_safe_name_capitalized %}
 }
 
 // Bootstrap the plugin main class
-\{%= nspace %}\{%= js_safe_name_capitalized %}::init();
+{%= prefix %}_{%= js_safe_name_capitalized %}::init();
