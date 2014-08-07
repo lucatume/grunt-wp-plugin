@@ -33,6 +33,8 @@
  * Built using grunt-wp-plugin
  * Copyright (c) 2013 10up, LLC
  * https://github.com/10up/grunt-wp-plugin
+ * version modified by theAverageDev (Luca Tumedei)
+ * http://theaveragedev.com
  */
 
 namespace {%= nspace %};
