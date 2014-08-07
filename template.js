@@ -23,11 +23,6 @@ exports.template = function(grunt, init, done) {
             message: 'PHP function prefix (alpha and underscore characters only)',
             default: 'wpplugin'
         },
-        {
-            name: 'nspace',
-            message: 'PHP namespace (alpha and underscore characters only)',
-            default: 'wpplugin'
-        },
         init.prompt('description', 'The best WordPress extension ever made!'),
         init.prompt('homepage', 'http://wordpress.org/plugins'),
         init.prompt('author_name'),
