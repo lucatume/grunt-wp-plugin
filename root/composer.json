@@ -8,7 +8,7 @@
         }
     ],
     "require": {
-        "lucatume/tdd-helpers": "~1.1"
+        "lucatume/tdd-helpers": "~2.0"
     },
     "autoload": {
         "psr-4": {
