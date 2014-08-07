@@ -33,23 +33,22 @@
  * Built using grunt-wp-plugin
  * Copyright (c) 2013 10up, LLC
  * https://github.com/10up/grunt-wp-plugin
+ * version modified by theAverageDev (Luca Tumedei)
+ * http://theaveragedev.com
  */
 
-namespace {%= nspace %};
-
 // Composer autoload
-include 'vendor/autoload.php';
-
-use \tad\interfaces\FunctionsAdapter;
-use \tad\adapters\Functions;
+// modified to work with PHP 5.2 thanks to 
+// https://bitbucket.org/xrstf/composer-php52
+include 'vendor/autoload_52.php';
 
 /**
  * Activation and deactivation
 */
-register_activation_hook(__FILE__, array('\{%= nspace %}\{%= js_safe_name_capitalized %}', 'activate'));
-register_deactivation_hook(__FILE__, array('\{%= nspace %}\{%= js_safe_name_capitalized %}', 'deactivate'));
+register_activation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'activate'));
+register_deactivation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'deactivate'));
 
-class {%= js_safe_name_capitalized %}
+class {%= prefix %}_{%= js_safe_name_capitalized %}
 {
     public $version = null;
     public $path = null;
@@ -61,21 +60,21 @@ class {%= js_safe_name_capitalized %}
     /**
      * An instance of the plugin main class, meant to be singleton.
      *
-     * @var {%= nspace %}\{%= prefix %}\{%= js_safe_name_capitalized %}
+     * @var {%= prefix %}_{%= js_safe_name_capitalized %}
      */
     private static $instance = null;
     
     /**
      * The global functions adapter used to isolate the class.
      *
-     * @var tad\adapters\Functions or a mock object.
+     * @var tad_FunctionsAdapter or a mock object.
      */
     private $f = null;
     
-    public function __construct(\tad\interfaces\FunctionsAdapter $f = null)
+    public function __construct(tad_FunctionsAdapterInterface $f = null)
     {
         if (is_null($f)) {
-            $f = new Functions();
+            $f = new tad_FunctionsAdapter();
         }
         $this->f = $f;
     }
@@ -87,7 +86,7 @@ class {%= js_safe_name_capitalized %}
      * @param mixed $value
      */
     public function __set($name, $value){
-        trigger_error(sprintf('Cannot set %s->%s property.', __NAMESPACE__ . '\\'. __CLASS__, $name));
+        trigger_error(sprintf('Cannot set %s->%s property.',  __CLASS__, $name));
     }
 
     public static function the($key)
@@ -155,4 +154,4 @@ class {%= js_safe_name_capitalized %}
 }
 
 // Bootstrap the plugin main class
-\{%= nspace %}\{%= js_safe_name_capitalized %}::init();
+{%= prefix %}_{%= js_safe_name_capitalized %}::init();
