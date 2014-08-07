@@ -48,7 +48,7 @@ include 'vendor/autoload_52.php';
 register_activation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'activate'));
 register_deactivation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'deactivate'));
 
-class {%= prefix %}_{%= js_safe_name_capitalized %}
+class {%= prefix %}
 {
     public $version = null;
     public $path = null;
@@ -154,4 +154,4 @@ class {%= prefix %}_{%= js_safe_name_capitalized %}
 }
 
 // Bootstrap the plugin main class
-{%= prefix %}_{%= js_safe_name_capitalized %}::init();
+{%= prefix %}::init();
