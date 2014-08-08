@@ -31,12 +31,19 @@ exports.template = function(grunt, init, done) {
             name: 'css_type',
             message: 'CSS Preprocessor: Will you use "Sass", "LESS", or "none" for CSS with this project?',
             default: 'Sass'
-        },
-        {
-            name: 'package_name', 
+        }, {
+            name: 'package_name',
             message: 'Composer package name',
             default: 'name/package'
-        },
+        }, {
+            name: 'repository_type',
+            message: 'VCS repository type',
+            default: 'git'
+        }, {
+            name: 'repository_url',
+            message: 'VCS repository url',
+            default: 'http://github.com/username/repository-name.git'
+        }
     ], function(err, props) {
         props.keywords = [];
         props.version = '0.1.0';
@@ -65,7 +72,13 @@ exports.template = function(grunt, init, done) {
         // An additional value that won't conflict with NodeUnit unit tests.
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
-        props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace( /\b./g, function(a){ return a.toUpperCase(); } ).replace(/\s+/, '_');
+        props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace(/\b./g, function(a) {
+            return a.toUpperCase();
+        }).replace(/\s+/, '_');
+        props.repository = {
+            'type': props.repository_type,
+            'url': props.repository_url
+        }
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {
