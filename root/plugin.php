@@ -45,10 +45,10 @@ include 'vendor/autoload_52.php';
 /**
  * Activation and deactivation
 */
-register_activation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'activate'));
-register_deactivation_hook(__FILE__, array('{%= prefix %}_{%= js_safe_name_capitalized %}', 'deactivate'));
+register_activation_hook(__FILE__, array('{%= js_safe_name_capitalized %}', 'activate'));
+register_deactivation_hook(__FILE__, array('{%= js_safe_name_capitalized %}', 'deactivate'));
 
-class {%= prefix %}
+class {%= js_safe_name_capitalized %}
 {
     public $version = null;
     public $path = null;
@@ -60,7 +60,7 @@ class {%= prefix %}
     /**
      * An instance of the plugin main class, meant to be singleton.
      *
-     * @var {%= prefix %}_{%= js_safe_name_capitalized %}
+     * @var {%= js_safe_name_capitalized %}
      */
     private static $instance = null;
     
@@ -154,4 +154,4 @@ class {%= prefix %}
 }
 
 // Bootstrap the plugin main class
-{%= prefix %}::init();
+{%= js_safe_name_capitalized %}::init();
