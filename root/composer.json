@@ -1,28 +1,36 @@
 {
-    "name": "{%= package_name %}",
-    "description": "{%= description %}",
-    "authors": [
-        {
-            "name": "{%= author_name %}",
-            "email": "{%= author_email %}"
-        }
-    ],
-    "require": {
-        "lucatume/tdd-helpers": "~2.0",
-        "xrstf/composer-php52": "1.*"
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ],
-        "post-update-cmd": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ],
-        "post-autoload-dump": [
-            "xrstf\\Composer52\\Generator::onPostInstallCmd"
-        ]
-    },
-    "autoload": {
-        "classmap": ["src/"]
+  "name": "{%= author_slug %}/{%= name %}",
+  "description": "{%= description %}",
+  "type": "wordpress-plugin",
+  "license": "GPL 2.0",
+  "authors": [
+    {
+      "name": "{%= author_name %}",
+      "email": "{%= author_email %}"
     }
+  ],
+  "minimum-stability": "dev",
+  "require": {
+    "xrstf/composer-php52": "1.*"
+  },
+  "scripts": {
+    "pre-install-cmd": [
+      "grunt pre-composer-update --verbose"
+    ],
+    "pre-update-cmd": [
+      "grunt pre-composer-update --verbose"
+    ],
+    "post-install-cmd": [
+      "xrstf\\Composer52\\Generator::onPostInstallCmd",
+      "grunt after-composer-update --verbose"
+    ],
+    "post-update-cmd": [
+      "xrstf\\Composer52\\Generator::onPostInstallCmd",
+      "grunt after-composer-update --verbose"
+    ],
+    "post-autoload-dump": [
+      "xrstf\\Composer52\\Generator::onPostInstallCmd",
+      "grunt after-composer-update --verbose"
+    ]
+  }
 }

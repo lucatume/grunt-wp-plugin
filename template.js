@@ -25,41 +25,27 @@ exports.template = function(grunt, init, done) {
         },
         init.prompt('description', 'The best WordPress extension ever made!'),
         init.prompt('homepage', 'http://wordpress.org/plugins'),
-        init.prompt('author_name'),
-        init.prompt('author_email'),
-        init.prompt('author_url'), {
+        init.prompt('author_slug', 'lucatume'),
+        init.prompt('author_name', 'Luca Tumedei'),
+        init.prompt('author_email', 'luca@theaveragedev.com'),
+        init.prompt('author_url', 'http://theaveragedev.com'), {
             name: 'css_type',
             message: 'CSS Preprocessor: Will you use "Sass", "LESS", or "none" for CSS with this project?',
             default: 'Sass'
-        }, {
-            name: 'package_name',
-            message: 'Composer package name',
-            default: 'name/package'
-        }, {
-            name: 'repository_type',
-            message: 'VCS repository type',
-            default: 'git'
-        }, {
-            name: 'repository_url',
-            message: 'VCS repository url',
-            default: 'http://github.com/username/repository-name.git'
         }
     ], function(err, props) {
         props.keywords = [];
         props.version = '0.1.0';
         props.devDependencies = {
-            'grunt': '~0.4.1',
-            'grunt-contrib-concat': '~0.1.2',
-            'grunt-contrib-uglify': '~0.4.x',
-            'grunt-contrib-cssmin': '~0.6.0',
-            'grunt-contrib-jshint': '~0.1.1',
-            'grunt-contrib-nodeunit': '~0.1.2',
-            'grunt-contrib-watch': '~0.2.0',
-            'grunt-contrib-clean': '~0.5.0',
-            'grunt-contrib-copy': '~0.4.1',
-            'grunt-contrib-compress': '~0.5.2',
-            'grunt-contrib-sass': "~0.7.x",
-            'grunt-autoprefixer': '0.7.x'
+            'grunt': '~0.4.5',
+            'grunt-contrib-concat': '~0.5.0',
+            'grunt-contrib-uglify': '~0.6.0',
+            'grunt-contrib-cssmin': '~0.10.0',
+            'grunt-contrib-jshint': '~0.10.0',
+            'grunt-contrib-nodeunit': '~0.4.1',
+            'grunt-contrib-watch': '~0.6.1',
+            'grunt-contrib-clean': '~0.6.0',
+            'grunt-git': '~0.3.5',
         };
         // Sanitize names where we need to for PHP/JS
         props.name = props.title.replace(/\s+/g, '-').toLowerCase();
@@ -72,20 +58,13 @@ exports.template = function(grunt, init, done) {
         // An additional value that won't conflict with NodeUnit unit tests.
         props.js_test_safe_name = props.js_safe_name === 'test' ? 'myTest' : props.js_safe_name;
         props.js_safe_name_caps = props.js_safe_name.toUpperCase();
-        props.js_safe_name_capitalized = props.js_safe_name.replace(/_/, ' ').toLowerCase().replace(/\b./g, function(a) {
-            return a.toUpperCase();
-        }).replace(/\s+/, '_');
-        props.repository = {
-            'type': props.repository_type,
-            'url': props.repository_url
-        }
         // Files to copy and process
         var files = init.filesToCopy(props);
         switch (props.css_type.toLowerCase()[0]) {
             case 'l':
                 delete files['assets/css/sass/' + props.js_safe_name + '.scss'];
                 delete files['assets/css/src/' + props.js_safe_name + '.css'];
-                props.devDependencies["grunt-contrib-less"] = "~0.5.0";
+                props.devDependencies["grunt-contrib-less"] = "~0.11.2";
                 props.css_type = 'less';
                 break;
             case 'n':
@@ -98,24 +77,11 @@ exports.template = function(grunt, init, done) {
             default:
                 delete files['assets/css/less/' + props.js_safe_name + '.less'];
                 delete files['assets/css/src/' + props.js_safe_name + '.css'];
-                props.devDependencies["grunt-contrib-sass"] = "~0.2.2";
+                props.devDependencies["grunt-contrib-sass"] = "~0.8.0";
                 props.css_type = 'sass';
                 break;
         }
         console.log(files);
-        // rename the src/plugin folder to src/prefix
-        // hint from PeteAUK at:
-        // http://stackoverflow.com/questions/11852283/rename-templates-folders-with-a-gruntjs-custom-init-task
-        var files = init.filesToCopy(props),
-            folder_name = 'src/' + props.nspace + '/' + props.prefix;
-        for (var file in files) {
-            if (file.indexOf('src/plugin/') > -1) {
-                var path = files[file],
-                    newFile = file.replace('src/plugin/', folder_name + '/');
-                files[newFile] = path;
-                delete files[file];
-            }
-        }
         // Actually copy and process files
         init.copyAndProcess(files, props);
         // Generate package.json file
