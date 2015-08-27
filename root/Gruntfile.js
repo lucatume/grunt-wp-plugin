@@ -1,17 +1,25 @@
 module.exports = function( grunt ) {
 
-	var dependencies = [],
-	delete_patterns = [".git/**", "tests/**", ".gitignore", "**.md", "Gruntfile.js", "example-functions.php", "composer.{json,lock}", "{.travis,.scrutinizer,codeception*,}.yml", "coverage.clover", "phpunit.xml.dist"],
-	clean_dist_patterns = [],
-	git_add_patterns = [];
 
-	for ( i = 0; i < dependencies.length; i++ ) {
-		git_add_patterns.push( dependencies[i] + '**' );
-		for ( k = 0; k < delete_patterns.length; k++ ) {
-			clean_dist_patterns.push( dependencies[i] + '/' + delete_patterns[k] );
-		}
+	// Read dependencies from composer
+	var composer = grunt.file.readJSON( 'composer.json' ),
+		dependencies = [];
+
+	for ( var dep in composer.require ) {
+		dependencies.push( 'vendor/' + dep );
 	}
 
+	var delete_patterns = [".git/**", "tests/**", ".gitignore", "**.md", "Gruntfile.js", "example-functions.php", "composer.{json,lock}", "{.travis,.scrutinizer,codeception*,}.yml", "coverage.clover", "phpunit.xml.dist"],
+		clean_dist_patterns = ['vendor/composer/installed.json'],
+		git_add_patterns = ['vendor/autoload*.php', 'vendor/composer/{autoload_*,ClassLoader*}.php'];
+
+		for ( i = 0; i < dependencies.length; i++ ) {
+			git_add_patterns.push( dependencies[i] + '**' );
+			for ( k = 0; k < delete_patterns.length; k++ ) {
+				clean_dist_patterns.push( dependencies[i] + '/' + delete_patterns[k] );
+			}
+	}
+		
 	// Project configuration
 	grunt.initConfig( {
 		pkg:    grunt.file.readJSON( 'package.json' ),
