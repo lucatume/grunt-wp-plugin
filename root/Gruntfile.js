@@ -168,6 +168,26 @@ module.exports = function( grunt ) {
 					src: git_add_patterns
 				}
 			}
+		},
+		replace: {
+			vendor: {
+				options: {
+					patterns: [
+						{
+							match: /\$/gm,
+							replacement: 'jQuery'
+						}
+					]
+				},
+				files: [
+					{
+						// expand: true,
+						// flatten: true, 
+						// src: ['assets/vendor/acme/src/acme.js'], 
+						// dest: 'assets/vendor/acme/strict'
+					}
+				]
+			}
 		}	
 	} );
 	
@@ -184,6 +204,7 @@ module.exports = function( grunt ) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
 	grunt.loadNpmTasks( 'grunt-git' );
+	grunt.loadNpmTasks( 'grunt-replace' );
 	
 	// Default task.
 	{% if ('sass' === css_type) { %}
@@ -194,7 +215,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin'] );
 	{% } %}
 	grunt.registerTask( 'pre-composer-update', ['clean:pre-update'] );
-	grunt.registerTask( 'after-composer-update', ['clean:dist', 'gitadd:dist'] );
+	grunt.registerTask( 'after-composer-update', ['clean:dist','replace:vendor', 'gitadd:dist'] );
 
 	grunt.util.linefeed = '\n';
 };

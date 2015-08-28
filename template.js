@@ -46,6 +46,7 @@ exports.template = function(grunt, init, done) {
             'grunt-contrib-watch': '~0.6.1',
             'grunt-contrib-clean': '~0.6.0',
             'grunt-git': '~0.3.5',
+            'grunt-replace': '^0.10.2'
         };
         // Sanitize names where we need to for PHP/JS
         props.name = props.title.replace(/\s+/g, '-').toLowerCase();
