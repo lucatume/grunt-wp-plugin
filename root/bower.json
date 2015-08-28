@@ -11,6 +11,5 @@
     "plugin"
   ],
   "license": "GPL 2.0",
-  "homepage": "{%= author_url %}",
-  "directory": "assets/vendor"
+  "homepage": "{%= author_url %}"
 }
