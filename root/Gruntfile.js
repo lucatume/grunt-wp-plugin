@@ -13,9 +13,9 @@ module.exports = function( grunt ) {
 		clean_dist_patterns = ['vendor/composer/installed.json'],
 		git_add_patterns = ['vendor/autoload*.php', 'vendor/composer/{autoload_*,ClassLoader*}.php'];
 
-		for ( i = 0; i < dependencies.length; i++ ) {
+		for ( var  i = 0; i < dependencies.length; i++ ) {
 			git_add_patterns.push( dependencies[i] + '**' );
-			for ( k = 0; k < delete_patterns.length; k++ ) {
+			for ( var k = 0; k < delete_patterns.length; k++ ) {
 				clean_dist_patterns.push( dependencies[i] + '/' + delete_patterns[k] );
 			}
 	}
