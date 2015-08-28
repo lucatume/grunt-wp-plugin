@@ -1,0 +1,16 @@
+{
+  "name": "{%= js_safe_name %}",
+  "version": "1.0.0",
+  "authors": [
+    "{%= author_name %} <{%= author_email %}>"
+  ],
+  "description": "{%= description %}",
+  "main": "{%= js_safe_name %}.php",
+  "keywords": [
+    "wordpress",
+    "plugin"
+  ],
+  "license": "GPL 2.0",
+  "homepage": "{%= author_url %}",
+  "directory": "assets/vendor"
+}
