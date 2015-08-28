@@ -194,7 +194,7 @@ module.exports = function( grunt ) {
 	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin'] );
 	{% } %}
 	grunt.registerTask( 'pre-composer-update', ['clean:pre-update'] );
-	grunt.registerTask( 'after-composer-update', ['clean:dist'] );
+	grunt.registerTask( 'after-composer-update', ['clean:dist', 'gitadd:dist'] );
 
 	grunt.util.linefeed = '\n';
 };
