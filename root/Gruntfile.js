@@ -9,12 +9,10 @@ module.exports = function( grunt ) {
 		dependencies.push( 'vendor/' + dep );
 	}
 
-	var delete_patterns = ["tests/**", ".gitignore", "**.md", "Gruntfile.js", "example-functions.php", "{.travis,.scrutinizer,codeception*,}.yml", "coverage.clover", "phpunit.xml.dist"],
-		clean_dist_patterns = ['vendor/composer/installed.json'],
-		git_add_patterns = ['vendor/autoload*.php', 'vendor/composer/{autoload_*,ClassLoader*}.php'];
+	var delete_patterns = ["tests/**", ".gitignore", "Gruntfile.js", "example-functions.php", "{.travis,.scrutinizer,codeception*,}.yml", "coverage.clover", "phpunit.xml.dist"],
+		clean_dist_patterns = [];
 
 		for ( var  i = 0; i < dependencies.length; i++ ) {
-			git_add_patterns.push( dependencies[i] + '**' );
 			for ( var k = 0; k < delete_patterns.length; k++ ) {
 				clean_dist_patterns.push( dependencies[i] + '/' + delete_patterns[k] );
 			}
@@ -158,17 +156,6 @@ module.exports = function( grunt ) {
 			dist: clean_dist_patterns,
 			'pre-update': dependencies
 		},
-		gitadd: {
-			dist: {
-				options: {
-					verbose: true,
-					force: true
-				},
-				files: {
-					src: git_add_patterns
-				}
-			}
-		},
 		replace: {
 			vendor: {
 				options: {
@@ -203,7 +190,6 @@ module.exports = function( grunt ) {
 	{% } %}
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks( 'grunt-contrib-clean' );
-	grunt.loadNpmTasks( 'grunt-git' );
 	grunt.loadNpmTasks( 'grunt-replace' );
 	
 	// Default task.
@@ -214,8 +200,7 @@ module.exports = function( grunt ) {
 	{% } else { %}
 	grunt.registerTask( 'default', ['jshint', 'concat', 'uglify', 'cssmin'] );
 	{% } %}
-	grunt.registerTask( 'pre-composer-update', ['clean:pre-update'] );
-	grunt.registerTask( 'after-composer-update', ['clean:dist','replace:vendor', 'gitadd:dist'] );
+	grunt.registerTask( 'after-composer-update', ['clean:dist','replace:vendor'] );
 
 	grunt.util.linefeed = '\n';
 };

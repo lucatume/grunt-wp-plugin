@@ -9,9 +9,18 @@
       "email": "{%= author_email %}"
     }
   ],
-  "minimum-stability": "dev",
-  "require-dev": {
-    "xrstf/composer-php52": "1.*"
+  "minimum-stability": "stable",
+  "config": {
+      "preferred-install": "dist"
+    },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/lucatume/composer-php52.git"
+    }
+  ],
+  "require": {
+    "xrstf/composer-php52": "1.0.20"
   },
     "autoload": {
    "psr-0": {
@@ -19,16 +28,13 @@
       }
   },
   "scripts": {
-    "command": [
-      "grunt pre-composer-update --verbose"
-    ],
     "post-install-cmd": [
       "xrstf\\Composer52\\Generator::onPostInstallCmd",
-      "grunt after-composer-update --verbose"
+      "grunt after-composer-update"
     ],
     "post-update-cmd": [
       "xrstf\\Composer52\\Generator::onPostInstallCmd",
-      "grunt after-composer-update --verbose"
+      "grunt after-composer-update"
     ],
     "post-autoload-dump": [
       "xrstf\\Composer52\\Generator::onPostInstallCmd"
