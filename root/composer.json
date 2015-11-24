@@ -13,6 +13,11 @@
   "require-dev": {
     "xrstf/composer-php52": "1.*"
   },
+    "autoload": {
+   "psr-0": {
+    "{%= prefix %}_": "src/"
+      }
+  },
   "scripts": {
     "command": [
       "grunt pre-composer-update --verbose"
