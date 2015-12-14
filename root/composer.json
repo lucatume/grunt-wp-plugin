@@ -13,14 +13,8 @@
   "config": {
       "preferred-install": "dist"
     },
-  "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/lucatume/composer-php52.git"
-    }
-  ],
   "require": {
-    "xrstf/composer-php52": "1.0.20"
+    "xrstf/composer-php52": "1.*"
   },
     "autoload": {
    "psr-0": {
